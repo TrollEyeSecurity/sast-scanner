@@ -1,14 +1,9 @@
 #/usr/bin/env bash
 
-pattern="^.*completion-for-dependency-check.sh$";
-if [[ "$0" =~ $pattern ]]; then 
-    echo
-    echo "To use completion for dependency-check you must run:"
-    echo
-    echo "         source completion-for-dependency-check.sh"
-    echo
-    exit
-fi
+# To use completion for dependency-check you must run:
+#
+#         source completion-for-dependency-check.sh
+#
 
 _odc_completions()
 {
@@ -26,7 +21,11 @@ _odc_completions()
             --connectionString
             --cveUrlBase
             --cveUrlModified
-            --cveValidForHours
+            --cveValidForHours <hours>
+            --cveStartYear <year>
+            --cveUser <user>
+            --cvePassword <password>
+            --cveDownloadWait <milliseconds>
         -d --data
             --dbDriverName
             --dbDriverPath
@@ -40,11 +39,14 @@ _odc_completions()
             --disableCentralCache
             --disableCmake
             --disableCocoapodsAnalyzer
-            --disableComposer 
+            --disableComposer
+            --disableFileName
             --disableGolangDep
             --disableGolangMod
             --disableJar
             --disableMixAudit
+            --disableMSBuild
+            --disableYarnAudit
             --disableNodeAudit
             --disableNodeAuditCache
             --disableNodeJS
@@ -60,36 +62,38 @@ _odc_completions()
             --disableRetireJS
             --disableRubygems
             --disableSwiftPackageManagerAnalyzer
+            --disableSwiftPackageResolvedAnalyzer
             --dotnet
             --enableArtifactory
             --enableExperimental
             --enableNexus
             --enableRetired
-            --exclude <pattern> 
-        -f --format <format> 
+            --exclude <pattern>
+        -f --format <format>
             --failOnCVSS <score>
             --go
-        -h --help 
+        -h --help
             --hints
-            --junitFailOnCVSS <score> 
+            --junitFailOnCVSS <score>
         -l --log
-        -n --noupdate                 
-            --nexus <url>        
-            --nexusPass <password>   
+        -n --noupdate
+            --nexus <url>
+            --nexusPass <password>
             --nexusUser <username>
             --nexusUsesProxy
-            --nodeAuditSkipDevDependencies  
-            --nonProxyHosts <list>    
+            --nodeAuditSkipDevDependencies
+            --nodePackageSkipDevDependencies
+            --nonProxyHosts <list>
         -o --out
-            --ossIndexPassword <password>   
-            --ossIndexUsername <username> 
+            --ossIndexPassword <password>
+            --ossIndexUsername <username>
         -P --propertyfile
             --prettyPrint
-            --project <name> 
+            --project <name>
             --proxypass <pass>
             --proxyport <port>
             --proxyserver <server>
-            --proxyuser <user> 
+            --proxyuser <user>
             --purge
             --retirejsFilter <pattern>
             --retirejsFilterNonVulnerable
@@ -100,7 +104,8 @@ _odc_completions()
             --symLink <depth>
             --updateonly
         -v --version
-            --zipExtensions <extensions>      
+            --yarn
+            --zipExtensions <extensions>
     "
 
 
@@ -111,7 +116,7 @@ _odc_completions()
 
 
     case "${prev}" in
-        -s|--scan|-o|--out|-d|--data|--bundleAudit|--bundleAuditWorkingDirectory|--dbDriverPath|--dotnet|--go|-P|--propertyfile|--suppression|--hint|-l|--log)
+        -s|--scan|-o|--out|-d|--data|--bundleAudit|--bundleAuditWorkingDirectory|--dbDriverPath|--dotnet|--go|-P|--propertyfile|--suppression|--hint|-l|--log|--yarn)
             COMPREPLY=( $(compgen -f -o default -- ${cur}) )
             return 0
             ;;
@@ -120,7 +125,7 @@ _odc_completions()
             return 0
             ;;
         -f|--format)
-            COMPREPLY=( $(compgen -W "HTML XML CSV JSON JUNIT ALL" ${cur}) )
+            COMPREPLY=( $(compgen -W "HTML XML CSV JSON JUNIT SARIF ALL" ${cur}) )
             return 0
             ;;
     esac
