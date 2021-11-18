@@ -6,7 +6,7 @@ COPY sonar-scanner-4.6.2.2472-net46 sonar-scanner-4.6.2.2472-net46/
 COPY sonar-scanner-4.6.2.2472-net5.0 sonar-scanner-4.6.2.2472-net5.0/
 COPY dependency-check dependency-check/
 COPY scripts scripts/
-RUN apt update --no-cache &&\
+RUN apt update &&\
         apt install openjdk-11-jre git -y &&\
         chmod +x /opt/dependency-check/bin/dependency-check.sh &&\
         chmod +x /opt/scripts/run-sonar.sh &&\
