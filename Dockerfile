@@ -8,7 +8,7 @@ COPY dependency-check dependency-check/
 COPY scripts scripts/
 RUN apt update &&\
         apt dist-upgrade -y &&\
-        apt install git -y &&\
+        apt install openjdk-11-jre git &&\
         chmod +x /opt/dependency-check/bin/dependency-check.sh &&\
         chmod +x /opt/scripts/run-sonar.sh &&\
         chmod +x /opt/scripts/run-dep-checker.sh &&\
