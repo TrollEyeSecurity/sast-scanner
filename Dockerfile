@@ -7,6 +7,7 @@ COPY sonar-scanner-4.6.2.2472-net5.0 sonar-scanner-4.6.2.2472-net5.0/
 COPY dependency-check dependency-check/
 COPY scripts scripts/
 ENV TZ=Us/Eastern
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update &&\
         apt dist-upgrade -y &&\
         apt install openjdk-11-jre git -y &&\
