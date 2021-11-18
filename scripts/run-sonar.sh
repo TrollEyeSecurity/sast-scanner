@@ -8,7 +8,7 @@ case "$TECH" in
     SCANNER=/opt/sonar-scanner-4.6.2.2472-net46/bin/sonar-scanner
     ;;
   *)
-    SCANNER=/opt/sonar-scanner-4.6.2.2472/bin/sonar-scanner
+    SCANNER=/opt/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner
     ;;
 esac
 
