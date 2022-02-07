@@ -9,6 +9,7 @@ COPY scripts scripts/
 ENV TZ=Us/Eastern
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update &&\
+        apt update && apt install wget && \
         wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
         dpkg -i packages-microsoft-prod.deb && \
         rm -rf packages-microsoft-prod.deb && \
