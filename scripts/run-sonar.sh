@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 case "$TECH" in
-  net50)
-    SCANNER=/opt/sonar-scanner-4.6.2.2472-net5.0/bin/sonar-scanner
+  dotnet)
+    SCANNER=/opt/sonar-scanner-msbuild-5.5.0.42949-net5.0/sonar-scanner-4.6.2.2472/bin/sonar-scanner
     ;;
   *)
     SCANNER=/opt/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner
