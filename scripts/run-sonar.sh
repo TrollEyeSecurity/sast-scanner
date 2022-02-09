@@ -7,7 +7,7 @@ case "$TECH" in
   dotnet)
     export PATH="$PATH:/root/.dotnet/tools"
     dotnet sonarscanner begin /k:"$PROJECTNAME"-"$BRANCH"-dotnet /d:sonar.login="$SONARLOGIN" /d:sonar.host.url="$SONARHOSTURL"
-    find . -name "*.sln" | while read x; do dotnet build "$x"; done
+    find "$PROJECTNAME" -name "*.sln" | while read x; do dotnet build "$x"; done
     dotnet sonarscanner end /d:sonar.login="$SONARLOGIN"
     ;;
 esac
