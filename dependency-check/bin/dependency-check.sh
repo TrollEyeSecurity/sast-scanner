@@ -116,7 +116,15 @@ if $cygwin || $mingw; then
   [ -n "$REPO" ] && REPO=`cygpath --path --windows "$REPO"`
 fi
 
-exec "$JAVACMD" $JAVA_OPTS  \
+DEBUG=""
+for var in "$@"
+do
+if [ "$var" = "--debug" ]; then
+    DEBUG="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000"
+fi
+done
+
+exec "$JAVACMD" $JAVA_OPTS $DEBUG  \
   -classpath "$CLASSPATH" \
   -Dapp.name="dependency-check" \
   -Dapp.pid="$$" \
