@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 git clone --single-branch --branch "$BRANCH" "$REPOURL"
-SCANNER=/opt/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner
+SCANNER=/opt/sonar-scanner-4.8.0.2856-linux/bin/sonar-scanner
 
 case "$TECH" in
   dotnet)
